@@ -5,4 +5,4 @@
 </p>
 
 ## 참가자
-* [전상규](./SangKyu%Jeon/README.md)
+* [전상규](./SangKyu%20Jeon/README.md)
