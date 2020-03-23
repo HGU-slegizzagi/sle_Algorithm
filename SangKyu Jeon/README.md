@@ -12,4 +12,4 @@
 * [별 찍기 - 8_2445](https://www.acmicpc.net/problem/2445)
 * [별 찍기-7_2444](https://www.acmicpc.net/problem/2444)
 * [별 찍기-6_2443](https://www.acmicpc.net/problem/2443)
-
+* [소수 찾기](https://www.acmicpc.net/problem/1978)
