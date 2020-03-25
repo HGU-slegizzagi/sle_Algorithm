@@ -1,3 +1,10 @@
 {
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Disabled",
+    "files.associations": {
+        "chrono": "cpp",
+        "ostream": "cpp",
+        "list": "cpp",
+        "iterator": "cpp",
+        "iostream": "cpp"
+    }
 }
