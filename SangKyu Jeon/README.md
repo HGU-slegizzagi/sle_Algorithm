@@ -17,14 +17,5 @@
 * [제로_10773](https://www.acmicpc.net/problem/10773)
 * [감시_15683](https://www.acmicpc.net/problem/15683)
 * [이진 검색 트리_5639](https://www.acmicpc.net/problem/5639)
-
-<!-- 🍫오늘의 알고리즘_#2 🍮
-
-1. 이진 검색 트리
-	😀난이도: 하
-	👨‍💻link: https://www.acmicpc.net/problem/5639
-
-2. 경사로
-	😁난이도: 중
-	👨‍💻Link: https://www.acmicpc.net/problem/14890 -->
+* [녹색 옷 입은 애가 젤다지?_4485](acmicpc.net/problem/4485)
 

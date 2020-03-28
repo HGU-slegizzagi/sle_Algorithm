@@ -5,6 +5,11 @@
         "ostream": "cpp",
         "list": "cpp",
         "iterator": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "vector": "cpp",
+        "set": "cpp",
+        "queue": "cpp",
+        "stack": "cpp",
+        "new": "cpp"
     }
 }
