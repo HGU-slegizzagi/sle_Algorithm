@@ -10,6 +10,8 @@
         "set": "cpp",
         "queue": "cpp",
         "stack": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "__tree": "cpp",
+        "bitset": "cpp"
     }
 }

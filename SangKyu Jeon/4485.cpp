@@ -1,5 +1,5 @@
 #include <iostream>
-#include <set>
+#include <queue>
 
 using namespace std;
 
@@ -9,6 +9,7 @@ int main(){
 
     int size = 1;
     int count = 0;
+
 
     while(1){
         count++;
@@ -24,7 +25,8 @@ int main(){
 
 
         int *distance = new int[size*size];
-        set<int> s;
+        int *check = new int[size*size];
+        queue<int> s;
 
 
         for(int i = 0; i < size; i++){
@@ -37,12 +39,13 @@ int main(){
 
         for(int i = 0; i < size*size; i++){
             distance[i] = -1;
+            check[i] = 0;
         }
 
         
         //---------------weight done
         //start point always 1
-        set<int>::iterator iter;
+
 
 
 
@@ -57,8 +60,8 @@ int main(){
             for(int i = 0; i < size*size; i++){
 
             
-                iter = s.find(i);
-                if( iter == s.end() && distance[i] != -1){
+               
+                if( check[i] ==0 && distance[i] != -1){
                     
                     if(minIndex == -1){
                         minIndex = i;
@@ -69,7 +72,8 @@ int main(){
                 }
             }
             
-            s.insert(minIndex);
+            s.push(minIndex);
+            check[minIndex] = 1;
 
             if(minIndex == size*size-1){
                 cout << "Problem "<<count<<": "<< distance[size*size-1]<<endl;
@@ -85,8 +89,7 @@ int main(){
                 int dirX = x+dir[i][1];
                 int dirY = y+dir[i][0];
 
-                iter = s.find(dirY*size+dirX);
-                if(iter != s.end()){
+                if(check[dirY*size+dirX] == 1){
                     continue;
                 }
 
