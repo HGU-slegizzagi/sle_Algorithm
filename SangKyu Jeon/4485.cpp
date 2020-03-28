@@ -3,6 +3,7 @@
 
 using namespace std;
 
+int dir[4][2]={{-1,0},{0,1},{1,0},{0,-1}};
 
 int main(){
 
@@ -11,8 +12,8 @@ int main(){
 
     while(1){
         count++;
-        cin >> size;
 
+        cin >> size;
         if(size == 0){
             return 0;
         }
@@ -20,11 +21,8 @@ int main(){
         for(int i = 0; i < size; i++){
             data[i] = new int [size];
         }
-        int **map = new int*[size*size];
-        for(int i = 0; i < size*size; i++){
-            map[i] = new int [size*size];
-        }
-        
+
+
         int *distance = new int[size*size];
         set<int> s;
 
@@ -35,56 +33,20 @@ int main(){
             }
         }
 
-        for(int i = 0; i < size*size; i++){
-            for(int j = 0; j < size*size; j++){
-                map[i][j] = -1;
-            }
-        }
+
 
         for(int i = 0; i < size*size; i++){
             distance[i] = -1;
         }
 
-        for(int i = 0; i < size; i++){
-            for(int j = 0; j < size; j++){
-                int index = (i*size)+(j);
-                int adjIndex;
-                //self
-                map[index][index] = data[i][j];
-
-
-                //left
-                if(j-1 >= 0){
-                    adjIndex = (i*size)+(j-1);
-                    map[index][adjIndex] = data[i][j-1];
-                }
-
-                //right
-                if(j+1<size){
-                    adjIndex = (i*size)+(j+1);
-                    map[index][adjIndex] = data[i][j+1];
-                }
-
-                //up
-                if(i-1 >= 0){
-                    adjIndex = ((i-1)*size)+(j);
-                    map[index][adjIndex] = data[i-1][j];
-                }
-                //down
-                if(i+1 < size){
-                    adjIndex = ((i+1)*size)+(j);
-                    map[index][adjIndex] = data[i+1][j];
-                }
-            }
-        }
-
+        
         //---------------weight done
         //start point always 1
         set<int>::iterator iter;
 
 
 
-        distance[0] = map[0][0];
+        distance[0] = data[0][0];
 
 
         while(s.size()<size*size){
@@ -94,6 +56,7 @@ int main(){
 
             for(int i = 0; i < size*size; i++){
 
+            
                 iter = s.find(i);
                 if( iter == s.end() && distance[i] != -1){
                     
@@ -106,37 +69,48 @@ int main(){
                 }
             }
             
-            // cout << s.size()<<endl;
             s.insert(minIndex);
+
+            if(minIndex == size*size-1){
+                cout << "Problem "<<count<<": "<< distance[size*size-1]<<endl;
+                break;
+            }
             
-            //update
-            for(int i = 0; i < size*size; i++){
-                
-                iter = s.find(i);
+            int y = minIndex/size;
+            int x = minIndex%size;
+            
 
-                if(iter == s.end()  && map[minIndex][i] != -1){
 
-                    //inf
-                    if(distance[i] == -1) {
-                        distance[i] = distance[minIndex]+map[minIndex][i];
+            for(int i = 0; i < 4;i++){
+                int dirX = x+dir[i][1];
+                int dirY = y+dir[i][0];
+
+                iter = s.find(dirY*size+dirX);
+                if(iter != s.end()){
+                    continue;
+                }
+
+                if( dirX >= 0 && dirX < size && dirY >= 0 && dirY < size){
+                    if(distance[dirY*size+dirX] == -1) {
+                        distance[dirY*size+dirX] = distance[minIndex]+data[dirY][dirX];
                     }
                     else{
-                        distance[i] = distance[minIndex]+map[minIndex][i] > distance[i] ? distance[i]: distance[minIndex]+map[minIndex][i];
+                        distance[dirY*size+dirX] = distance[dirY*size+dirX]+data[dirY][dirX] > distance[dirY*size+dirX] ? distance[dirY*size+dirX]: distance[dirY*size+dirX]+data[dirY][dirX];
                     }
-                }
-                
+                } 
             }
         }
+        // cout << "-count-" << endl;
+        // for(int i = 0; i < size*size ; i++){
+        //     cout << distance[i] << " | " ;
+        // }
+        // cout << endl;
 
-        cout << "Problem "<<count<<": "<< distance[size*size-1]<<endl;
         for(int i = 0; i < size; i++){
             delete[] data[i];
         }
         delete[] data;
-        for(int i = 0; i < size*size; i++){
-            delete[] map[i];
-        }
-        delete[] map;
+
         delete[] distance;
 
     }
@@ -150,17 +124,19 @@ int main(){
 5 5 4
 3 9 1
 3 2 7
-
-weight
-5 5 _ 3 _ _ _ _ _
-5 5 4 _ 9 _ _ _ _
-_ 5 4 _ _ 1 _ _ _
-5 _ _ 3 9 _ 3 _ _
-_ 5 _ 3 9 1 _ 2 7
-_ _ 4 _ 9 1 _ _ 7
-_ _ _ 3 _ _ 3 2 _
-_ _ _ _ 9 _ 3 2 7
-_ _ _ _ _ 1 _ 2 7
-
-distance[9]
+5
+3 7 2 0 1
+2 8 0 9 1
+1 2 1 8 1
+9 8 9 2 0
+3 6 5 1 5
+7
+9 0 5 1 1 5 3
+4 1 2 1 6 5 3
+0 7 6 1 6 8 5
+1 1 7 8 3 2 3
+9 4 0 7 6 4 1
+5 8 3 2 4 8 3
+7 4 8 4 8 3 4
+0
 */
