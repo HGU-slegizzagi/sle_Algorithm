@@ -12,6 +12,7 @@
         "stack": "cpp",
         "new": "cpp",
         "__tree": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "utility": "cpp"
     }
 }
