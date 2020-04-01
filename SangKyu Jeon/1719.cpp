@@ -1,6 +1,7 @@
 #include <iostream>
 #include <queue>
 #include <vector>
+#include <stack>
 #define INF 10000
 using namespace std;
 
@@ -31,13 +32,16 @@ vector<int> dijstra(int src,int nodeNum,vector<pair<int,int> >* adj,int **map){
     distance[src] = 0;
     priority_queue<Vertex> pq;
     pq.push(Vertex(src,0,-1));
+    stack<Vertex> path;
+    int road[nodeNum];
 
     while(!pq.empty()){
         int weight = -pq.top().weight;
         int curNode = pq.top().index;
         int post = pq.top().post;
+        // path.push(Vertex(nextNode,-newWeight,curNode));
+        path.push(pq.top());
         pq.pop();
-        map[src][curNode] = post;
 
 
         if(distance[curNode] < weight){
@@ -49,22 +53,37 @@ vector<int> dijstra(int src,int nodeNum,vector<pair<int,int> >* adj,int **map){
             int newWeight = weight + adj[curNode][i].second;
 
             if(distance[nextNode] > newWeight){
-                // cout <<src <<" | "<< curNode <<" | "<<post << endl;
+                
                 distance[nextNode] = newWeight;
-                pq.push(Vertex(nextNode,-newWeight,curNode+1));
+                pq.push(Vertex(nextNode,-newWeight,curNode));
             }
         }
     }
 
+
+    while(!path.empty()){
+
+        road[path.top().index] = path.top().post;
+
+        path.pop();
+    }
+
+
+
     for(int i = 0; i < nodeNum; i++){
-        if(i == src){
-            cout << "_ ";
-        }
-        else{
-            cout << map[src][i] << " ";
+        int adjIndex = i;
+
+        while(1){
+    
+            if(adjIndex == -1 || road[adjIndex] == src){
+                map[src][i] = adjIndex;
+                break;
+            }
+            else{
+                adjIndex = road[adjIndex];
+            }
         }
     }
-    cout << endl;
 
     return distance;
 
@@ -88,7 +107,7 @@ int main(){
         map[i] = new int[n];
     }
 
-    vector<pair<int, int> > adj[n*n];
+    vector<pair<int, int> > adj[n];
 
     for(int i = 0; i < m; i++){
         cin >> src;
@@ -98,14 +117,34 @@ int main(){
         adj[des-1].push_back(make_pair(src-1,weight));
     }
 
-
-
-cout << endl;cout << endl;
-
     for(int i = 0; i < n;i++){
         dijstra(i,n,adj,map);
     }
 
-
-
+    
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            if(i == j){
+                cout << "- ";
+            }
+            else{
+                cout << map[i][j]+1 << " ";
+            }
+        }
+        cout << endl;
+    }
 }
+
+/*
+5 8
+5 2 4
+5 4 2
+4 2 1
+4 3 1
+2 1 3
+1 4 3
+1 3 6
+3 4 2
+
+
+*/
