@@ -13,6 +13,7 @@
         "new": "cpp",
         "__tree": "cpp",
         "bitset": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "iosfwd": "cpp"
     }
 }
