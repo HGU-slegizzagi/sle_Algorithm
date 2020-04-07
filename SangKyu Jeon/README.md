@@ -1,6 +1,8 @@
 # SangKyu가 푼 알고리즘 문제들
 
 > 하루에 1~2개 어렵지 않은 문제들로 풀려고 합니다!
+### Algorithm 정리
+* [Dijstra 알고리즘 정리](./docs/Dijstra.pdf)
 
 ### 지금까지 푼 문제
 
