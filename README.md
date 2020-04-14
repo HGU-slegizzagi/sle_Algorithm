@@ -12,7 +12,6 @@
 
 
 ### 작성시 Tip 
-
 ### BOJNumberOfProblem
 
 - 내가 이해한 문제내용
