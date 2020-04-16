@@ -1,6 +1,6 @@
 import java.util.Scanner;
-//runtime error
-class palin
+//시간초과
+class Main
 {
     public static void main(String[] args){
         Scanner sc=new Scanner(System.in);
