@@ -1,7 +1,6 @@
 #include <iostream>
 int main(){
 	short a;
-	short o;
 	std::cin>>a;
 
 	a=1000-a;
